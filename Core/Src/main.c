@@ -78,6 +78,7 @@ uint32_t Value2 = 0;
 uint16_t Distance  = 0;  // cm
 uint16_t Time = 0; // s
 uint16_t SoundSpeed = 0; // m/s
+uint16_t Humidity = 40;
 
 // Let's write the callback function
 
@@ -144,7 +145,7 @@ int main(void)
     Time = Hal_GetTick() * 1000;
     SoundSpeed = Distance * Time;
 
-    Temperature = SoundSpeed - 331.4;
+    Temperature = SoundSpeed - 331.4 + (0.0124 * Humidity);
 
 	lcd_send_string("Temp: ");
 	lcd_send_data(Temperature);
