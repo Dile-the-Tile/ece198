@@ -121,13 +121,8 @@ int main(void)
   HAL_TIM_Base_Start(&htim1);
   HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_RESET);  // pull the TRIG pin low
   lcd_init();
-  /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_SET);  // pull the TRIG pin HIGH
+      HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_SET);  // pull the TRIG pin HIGH
     __HAL_TIM_SET_COUNTER(&htim1, 0);
     while (__HAL_TIM_GET_COUNTER (&htim1) < 10);  // wait for 10 us
     HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_RESET);  // pull the TRIG pin low
@@ -147,12 +142,15 @@ int main(void)
     SoundSpeed = Distance * Time;
 
     Temperature = SoundSpeed - 331.4 + (0.0124 * Humidity);
+    lcd_send_string("Temp: ");
+    lcd_send_data(Temperature);
+    lcd_send_string("Degrees Celsius");
+  /* USER CODE END 2 */
 
-	lcd_send_string("Temp: ");
-	lcd_send_data(Temperature);
-	lcd_send_string("Degrees Celsius");
-
-    HAL_Delay(500);
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
