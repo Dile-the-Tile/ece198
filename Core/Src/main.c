@@ -24,6 +24,8 @@
 
 #include "i2c-lcd.h"
 
+//hello
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
